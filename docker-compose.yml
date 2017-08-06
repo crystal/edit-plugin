@@ -1,0 +1,29 @@
+version: '2'
+services:
+  web:
+    image: wordpress
+    ports:
+      - "8080:80"
+    links:
+      - db:mysql
+    environment:
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_NAME=prophoto
+      - WORDPRESS_TABLE_PREFIX=pro_
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=password
+      - MYSQL_PORT_3306_TCP=3306
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./wordpress/:/var/www/html/
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=prophoto
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    restart: unless-stopped
