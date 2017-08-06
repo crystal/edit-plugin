@@ -1,0 +1,21 @@
+extends: airbnb
+parser: babel-eslint
+rules:
+  arrow-body-style:
+    - off
+  class-methods-use-this:
+    - off
+  comma-dangle:
+    - error
+    - never
+  jsx-a11y/href-no-hash: off
+  react/forbid-prop-types:
+    - off
+  react/prefer-stateless-function:
+    - off
+  prefer-arrow-callback:
+    - off
+env:
+  browser: true
+  commonjs: true
+  node: true

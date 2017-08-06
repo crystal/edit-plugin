@@ -19,8 +19,8 @@ class Edit {
 	}
 
 	public static function init() {
-		wp_register_script( 'edit', plugins_url( 'build/admin.js', __FILE__ ), array(), time(), true );
-		wp_register_style( 'edit-css', plugins_url( 'css/components.css', __FILE__ ), array(), time() );
+		wp_register_script( 'edit', plugins_url( 'build/app.js', __FILE__ ), array(), time(), true );
+		wp_register_style( 'edit-css', plugins_url( 'build/app.css', __FILE__ ), array(), time() );
 	}
 
 	public static function admin_menu() {
@@ -38,7 +38,7 @@ class Edit {
 
 	public static function admin_page() {
 		?>
-		<div id="edit-container"></div>
+		<div id="app"></div>
 		<?php
 	}
 
