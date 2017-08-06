@@ -16,8 +16,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:
-      - ./wordpress/:/var/www/html/
-      - ./src/:/var/www/html/wp-content/plugins/edit/
+      - ./plugin/:/var/www/html/wp-content/plugins/edit/
   db:
     image: mysql
     ports:
