@@ -1,26 +1,31 @@
-import axios from 'axios';
-
 function getPosts() {
   return (dispatch) => {
     dispatch({
       type: 'GET_POSTS_REQ'
     });
-    axios.get('/?rest_route=/wp/v2/posts&per_page=5')
-      .then((response) => {
+    const posts = new wp.api.collections.Posts({ // eslint-disable-line no-undef
+      per_page: 5,
+      order: 'DESC',
+      orderby: 'date'
+    });
+    posts.fetch({
+      success: (model, response) => {
         dispatch({
           type: 'GET_POSTS_RES',
-          posts: response.data.map(post => ({
+          posts: response.map(post => ({
+            id: post.id,
             title: post.title.rendered,
             content: post.content.rendered
           }))
         });
-      })
-      .catch((error) => {
+      },
+      error: (model, response) => {
         dispatch({
           type: 'GET_POSTS_ERR',
-          error: error.message
+          error: response.message
         });
-      });
+      }
+    });
   };
 }
 

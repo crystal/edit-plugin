@@ -7,6 +7,24 @@ const initialState = {
 
 function postsReducer(state = initialState, action) {
   switch (action.type) {
+    case 'DELETE_POST_REQ': {
+      return {
+        ...state,
+        error: '',
+        isComplete: false,
+        isLoading: true,
+        posts: []
+      };
+    }
+    case 'EDIT_POST_REQ': {
+      return {
+        ...state,
+        error: '',
+        isComplete: false,
+        isLoading: true,
+        posts: []
+      };
+    }
     case 'GET_POSTS_REQ': {
       return {
         ...state,
@@ -17,7 +35,6 @@ function postsReducer(state = initialState, action) {
       };
     }
     case 'GET_POSTS_RES': {
-      console.log(action.posts);
       return {
         ...state,
         error: '',
